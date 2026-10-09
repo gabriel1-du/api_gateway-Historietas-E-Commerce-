@@ -18,6 +18,11 @@ import static com.gateway.redireccionApis.ApiUsuarios.regiones.RegionesPublicRou
 import static com.gateway.redireccionApis.ApiUsuarios.comunas.ComunasPublicRoutes.COMUNAS_PUBLIC_GET;
 import static com.gateway.redireccionApis.ApiUsuarios.usuarios.UsuariosPublicRoutes.USUARIOS_PUBLIC_GET;
 import static com.gateway.redireccionApis.ApiUsuarios.usuarios.UsuariosPublicRoutes.USUARIOS_PUBLIC_POST;
+import static com.gateway.redireccionApis.ApiInventarios.autor.AutorPublicRoutes.AUTOR_PUBLIC_GET;
+import static com.gateway.redireccionApis.ApiInventarios.genero.GeneroPublicRoutes.GENERO_PUBLIC_GET;
+import static com.gateway.redireccionApis.ApiInventarios.historieta.HistorietaPublicRoutes.HISTORIETA_PUBLIC_GET;
+import static com.gateway.redireccionApis.ApiInventarios.serie.SeriePublicRoutes.SERIE_PUBLIC_GET;
+import static com.gateway.redireccionApis.ApiInventarios.tipo.TipoPublicRoutes.TIPO_PUBLIC_GET;
 import java.util.Arrays;
 
 @Configuration
@@ -46,6 +51,13 @@ public class SecurityConfig {
 
                 // URL públicas API Comunas
                 .requestMatchers(HttpMethod.GET, COMUNAS_PUBLIC_GET).permitAll()
+
+                // URL públicas API Inventarios
+                .requestMatchers(HttpMethod.GET, AUTOR_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.GET, GENERO_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.GET, HISTORIETA_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.GET, SERIE_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.GET, TIPO_PUBLIC_GET).permitAll()
 
                 // Cualquier otra requiere autenticación
                 .anyRequest().authenticated()
