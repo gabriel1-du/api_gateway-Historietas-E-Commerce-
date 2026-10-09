@@ -23,6 +23,19 @@ import static com.gateway.redireccionApis.ApiInventarios.genero.GeneroPublicRout
 import static com.gateway.redireccionApis.ApiInventarios.historieta.HistorietaPublicRoutes.HISTORIETA_PUBLIC_GET;
 import static com.gateway.redireccionApis.ApiInventarios.serie.SeriePublicRoutes.SERIE_PUBLIC_GET;
 import static com.gateway.redireccionApis.ApiInventarios.tipo.TipoPublicRoutes.TIPO_PUBLIC_GET;
+import static com.gateway.redireccionApis.ApiCompras.boletas.BoletasPublicRoutes.BOLETAS_PUBLIC_GET;
+import static com.gateway.redireccionApis.ApiCompras.carritos.CarritosPublicRoutes.CARRITOS_PUBLIC_GET;
+import static com.gateway.redireccionApis.ApiCompras.historialCompras.HistorialComprasPublicRoutes.HISTORIAL_COMPRAS_PUBLIC_GET;
+import static com.gateway.redireccionApis.ApiCompras.listaDeseos.ListaDeseosPublicRoutes.LISTA_DESEOS_PUBLIC_GET;
+import static com.gateway.redireccionApis.ApiCompras.mediosPago.MediosPagoPublicRoutes.MEDIOS_PAGO_PUBLIC_GET;
+import static com.gateway.redireccionApis.ApiCompras.productoCart.ProductoCartPublicRoutes.PRODUCTO_CART_PUBLIC_GET;
+import static com.gateway.redireccionApis.ApiCompras.productoCart.ProductoCartPublicRoutes.PRODUCTO_CART_PUBLIC_POST;
+import static com.gateway.redireccionApis.ApiCompras.productoCart.ProductoCartPublicRoutes.PRODUCTO_CART_PUBLIC_PUT;
+import static com.gateway.redireccionApis.ApiCompras.productoCart.ProductoCartPublicRoutes.PRODUCTO_CART_PUBLIC_DELETE;
+import static com.gateway.redireccionApis.ApiCompras.productoListaDeseos.ProductoListaDeseosPublicRoutes.PRODUCTO_LISTA_DESEOS_PUBLIC_GET;
+import static com.gateway.redireccionApis.ApiCompras.productoListaDeseos.ProductoListaDeseosPublicRoutes.PRODUCTO_LISTA_DESEOS_PUBLIC_POST;
+import static com.gateway.redireccionApis.ApiCompras.productoListaDeseos.ProductoListaDeseosPublicRoutes.PRODUCTO_LISTA_DESEOS_PUBLIC_PUT;
+import static com.gateway.redireccionApis.ApiCompras.productoListaDeseos.ProductoListaDeseosPublicRoutes.PRODUCTO_LISTA_DESEOS_PUBLIC_DELETE;
 import java.util.Arrays;
 
 @Configuration
@@ -58,6 +71,25 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, HISTORIETA_PUBLIC_GET).permitAll()
                 .requestMatchers(HttpMethod.GET, SERIE_PUBLIC_GET).permitAll()
                 .requestMatchers(HttpMethod.GET, TIPO_PUBLIC_GET).permitAll()
+
+                // URL públicas API Compras (solo GET para la mayoría)
+                .requestMatchers(HttpMethod.GET, BOLETAS_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.GET, CARRITOS_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.GET, HISTORIAL_COMPRAS_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.GET, LISTA_DESEOS_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.GET, MEDIOS_PAGO_PUBLIC_GET).permitAll()
+
+                // ProductoCart: todas las operaciones son públicas
+                .requestMatchers(HttpMethod.GET, PRODUCTO_CART_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.POST, PRODUCTO_CART_PUBLIC_POST).permitAll()
+                .requestMatchers(HttpMethod.PUT, PRODUCTO_CART_PUBLIC_PUT).permitAll()
+                .requestMatchers(HttpMethod.DELETE, PRODUCTO_CART_PUBLIC_DELETE).permitAll()
+
+                // ProductoListaDeseos: todas las operaciones son públicas
+                .requestMatchers(HttpMethod.GET, PRODUCTO_LISTA_DESEOS_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.POST, PRODUCTO_LISTA_DESEOS_PUBLIC_POST).permitAll()
+                .requestMatchers(HttpMethod.PUT, PRODUCTO_LISTA_DESEOS_PUBLIC_PUT).permitAll()
+                .requestMatchers(HttpMethod.DELETE, PRODUCTO_LISTA_DESEOS_PUBLIC_DELETE).permitAll()
 
                 // Cualquier otra requiere autenticación
                 .anyRequest().authenticated()
