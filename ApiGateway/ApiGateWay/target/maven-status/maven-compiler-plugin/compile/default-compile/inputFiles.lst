@@ -40,6 +40,12 @@
 /home/gabriel/Escritorio/Proyectos Apis/ApiGateway/ApiGateway/ApiGateWay/src/main/java/com/gateway/redireccionApis/ApiInventarios/serie/SeriePublicRoutes.java
 /home/gabriel/Escritorio/Proyectos Apis/ApiGateway/ApiGateway/ApiGateWay/src/main/java/com/gateway/redireccionApis/ApiInventarios/tipo/TipoHistProxyController.java
 /home/gabriel/Escritorio/Proyectos Apis/ApiGateway/ApiGateway/ApiGateWay/src/main/java/com/gateway/redireccionApis/ApiInventarios/tipo/TipoPublicRoutes.java
+/home/gabriel/Escritorio/Proyectos Apis/ApiGateway/ApiGateway/ApiGateWay/src/main/java/com/gateway/redireccionApis/ApiTransporte/empresaTransporte/EmpresaTransporteProxyController.java
+/home/gabriel/Escritorio/Proyectos Apis/ApiGateway/ApiGateway/ApiGateWay/src/main/java/com/gateway/redireccionApis/ApiTransporte/empresaTransporte/EmpresaTransportePublicRoutes.java
+/home/gabriel/Escritorio/Proyectos Apis/ApiGateway/ApiGateway/ApiGateWay/src/main/java/com/gateway/redireccionApis/ApiTransporte/pedidos/PedidosProxyController.java
+/home/gabriel/Escritorio/Proyectos Apis/ApiGateway/ApiGateway/ApiGateWay/src/main/java/com/gateway/redireccionApis/ApiTransporte/pedidos/PedidosPublicRoutes.java
+/home/gabriel/Escritorio/Proyectos Apis/ApiGateway/ApiGateway/ApiGateWay/src/main/java/com/gateway/redireccionApis/ApiTransporte/transportistas/TransportistasProxyController.java
+/home/gabriel/Escritorio/Proyectos Apis/ApiGateway/ApiGateway/ApiGateWay/src/main/java/com/gateway/redireccionApis/ApiTransporte/transportistas/TransportistasPublicRoutes.java
 /home/gabriel/Escritorio/Proyectos Apis/ApiGateway/ApiGateway/ApiGateWay/src/main/java/com/gateway/redireccionApis/ApiUsuarios/comunas/ComunasProxyController.java
 /home/gabriel/Escritorio/Proyectos Apis/ApiGateway/ApiGateway/ApiGateWay/src/main/java/com/gateway/redireccionApis/ApiUsuarios/comunas/ComunasPublicRoutes.java
 /home/gabriel/Escritorio/Proyectos Apis/ApiGateway/ApiGateway/ApiGateWay/src/main/java/com/gateway/redireccionApis/ApiUsuarios/regiones/RegionesProxyController.java

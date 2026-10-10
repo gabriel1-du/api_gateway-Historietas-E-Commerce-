@@ -36,6 +36,9 @@ import static com.gateway.redireccionApis.ApiCompras.productoListaDeseos.Product
 import static com.gateway.redireccionApis.ApiCompras.productoListaDeseos.ProductoListaDeseosPublicRoutes.PRODUCTO_LISTA_DESEOS_PUBLIC_POST;
 import static com.gateway.redireccionApis.ApiCompras.productoListaDeseos.ProductoListaDeseosPublicRoutes.PRODUCTO_LISTA_DESEOS_PUBLIC_PUT;
 import static com.gateway.redireccionApis.ApiCompras.productoListaDeseos.ProductoListaDeseosPublicRoutes.PRODUCTO_LISTA_DESEOS_PUBLIC_DELETE;
+import static com.gateway.redireccionApis.ApiTransporte.empresaTransporte.EmpresaTransportePublicRoutes.EMPRESA_TRANSPORTE_PUBLIC_GET;
+import static com.gateway.redireccionApis.ApiTransporte.pedidos.PedidosPublicRoutes.PEDIDOS_PUBLIC_GET;
+import static com.gateway.redireccionApis.ApiTransporte.transportistas.TransportistasPublicRoutes.TRANSPORTISTAS_PUBLIC_GET;
 import java.util.Arrays;
 
 @Configuration
@@ -90,6 +93,11 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, PRODUCTO_LISTA_DESEOS_PUBLIC_POST).permitAll()
                 .requestMatchers(HttpMethod.PUT, PRODUCTO_LISTA_DESEOS_PUBLIC_PUT).permitAll()
                 .requestMatchers(HttpMethod.DELETE, PRODUCTO_LISTA_DESEOS_PUBLIC_DELETE).permitAll()
+
+                // URL públicas API Transporte (solo GET)
+                .requestMatchers(HttpMethod.GET, EMPRESA_TRANSPORTE_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.GET, PEDIDOS_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.GET, TRANSPORTISTAS_PUBLIC_GET).permitAll()
 
                 // Cualquier otra requiere autenticación
                 .anyRequest().authenticated()
