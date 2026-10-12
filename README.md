@@ -4,6 +4,17 @@
 
 ---
 
+## Comandos para arrancar y usar:
+**Tener instalado maven con anterioridad en el pc y tener la base de datos con el script con el mismo nombre de bda**
+**Tambien debe ingresar su base conexion manualmente al app.properties**
+
+git clone https://github.com/tu-usuario/....(url de este rep)  
+cd ubcacion-maven  
+maven clan install  
+ls -lh target/*.jar (esto para saber el nombre del .jar)  
+java -jar target/nombre-de-tu-archivo.jar (este arranca la api)
+
+
 ## Índice
 
 - [Tecnologías Utilizadas](#tecnologías-utilizadas)
