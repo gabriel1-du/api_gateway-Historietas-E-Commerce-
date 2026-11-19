@@ -1,1 +1,9 @@
 contexto.md
+.mvn
+./contexto
+Contexto
+target
+.env
+mvnw
+package.json
+package-lock.json
