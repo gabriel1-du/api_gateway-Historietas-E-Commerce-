@@ -1,5 +1,4 @@
-# Produccion: misma BD compartida del microservicio de usuarios.
-# Requisito: mysql-db (contenedor api-usuarios-local) levantado y publicando 3306.
+# Produccion: sin base de datos; la autenticacion la hace api_usuarios.
 services:
   apigateway:
     build:
@@ -14,13 +13,6 @@ services:
       - .env
     environment:
       SERVER_PORT: 8888
-
-      # --- Base de datos compartida con api_usuarios ---
-      DB_HOST: localhost
-      DB_PORT: 3306
-      DB_NAME: usuarios_db
-      DB_USER: root
-      DB_PASSWORD: hola123
 
       # Las URLs de microservicios NO se fijan aqui: se usan los defaults de
       # application.properties o los valores (comentados) del .env.

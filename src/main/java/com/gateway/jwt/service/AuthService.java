@@ -1,34 +1,20 @@
 package com.gateway.jwt.service;
 
-import com.gateway.jwt.dto.*;
-import com.gateway.jwt.model.Usuario;
-import com.gateway.jwt.repository.UsuarioRepository;
-import com.gateway.jwt.security.JwtUtil;
+import com.gateway.RestClient.UsuarioClient;
+import com.gateway.jwt.dto.AuthResponse;
+import com.gateway.jwt.dto.LoginRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.*;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class AuthService {
 
-    private final UsuarioRepository usuarioRepository;
-    private final AuthenticationManager authManager;
-    private final JwtUtil jwtUtil;
+    private final UsuarioClient usuarioClient;
 
     public AuthResponse login(LoginRequest request) {
-        authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-
-        Usuario usuario = usuarioRepository.findByEmail(request.getEmail())
-                .orElseThrow();
-
-        // El token incluye: username (email), permiso_admin y userId
-        String token = jwtUtil.generateToken(
-                usuario.getEmail(),
-                Boolean.TRUE.equals(usuario.getPermisoAdmin()),
-                usuario.getId()
-        );
-        return new AuthResponse(token);
+        // El microservicio de usuarios valida las credenciales y genera el token.
+        // El gateway solo actua como fachada: reenvia la peticion y devuelve el token.
+        return usuarioClient.login(request);
     }
 }

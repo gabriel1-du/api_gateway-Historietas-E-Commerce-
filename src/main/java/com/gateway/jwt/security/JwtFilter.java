@@ -19,7 +19,6 @@ import java.io.IOException;
 public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
-    private final UserDetailsServiceImpl userDetailsService;
 
     @Override
     protected void doFilterInternal(
@@ -44,26 +43,25 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 
         final String token = authHeader.substring(7);
-        final String username;
 
         try {
-            username = jwtUtil.extractUsername(token);
-        } catch (Exception e) {
-            filterChain.doFilter(request, response);
-            return;
-        }
+            // El token fue emitido por api_usuarios. Se valida la firma y se construyen
+            // los UserDetails directamente desde los claims (sin consultar la BD).
+            if (jwtUtil.validateToken(token)
+                    && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-        // Si tenemos un usuario y no está ya autenticado en el contexto de seguridad
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            try {
-                UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+                UserDetails userDetails = new UserDetailsImpl(
+                        jwtUtil.extractUsername(token),
+                        jwtUtil.extractPermisoAdmin(token),
+                        jwtUtil.extractUserId(token));
+
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
-            } catch (Exception e) {
-                // Si el usuario del token no se encuentra, continuamos sin autenticar.
             }
+        } catch (Exception e) {
+            // Token invalido o claims ausentes: se continua sin autenticar.
         }
 
         filterChain.doFilter(request, response);
