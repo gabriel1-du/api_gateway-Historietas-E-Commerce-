@@ -1,0 +1,25 @@
+cd ~/api_gateway-Historietas-E-Commerce-
+
+# El gateway usa .env (no .env.prod). Ya existe en el repo; si falta, crealo:
+#   SERVER_PORT=8888
+#   USUARIOS_API_URL=http://<host>:8080   (o dejala comentada para usar el default)
+#   INVENTARIO_API_URL=...
+#   COMPRAS_API_URL=...
+#   TRANSPORTE_API_URL=...
+nano .env
+
+bash -n deploy.sh
+./deploy.sh --check            # solo valida, no modifica nada
+./deploy.sh --dry-run          # muestra lo que haría
+./deploy.sh feature/StartUp-Info-Request-Logs   # despliega de verdad (o master)
+
+# Comandos útiles después del deploy:
+sudo docker compose -f docker-compose.prod.yml --env-file .env logs -f apigateway
+sudo docker compose -f docker-compose.prod.yml --env-file .env ps
+sudo docker compose -f docker-compose.prod.yml --env-file .env restart apigateway
+
+# Healthcheck manual (rutas públicas del API Gateway):
+curl -i http://localhost:8888/api/start-up/conexiones
+curl -i http://localhost:8888/api/start-up/check-resume
+
+# Si el contenedor usa network_mode: host, "localhost" es la propia EC2.
